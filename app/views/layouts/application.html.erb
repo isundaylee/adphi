@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Adphi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+    <title>ΑΔΦ ΛΦ<%= content_for?(:title) ? " | " + yield(:title) : "" %></title>
 
-</body>
+    <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Tinos&subset=greek' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body id="<%= "#{params[:controller]}_#{params[:action]}" %>" class="<%= "#{params[:controller]}-action" %>">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">ΑΔΦ ΛΦ</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <ul class="right">
+          <!-- <li><a href="attendence.html">Attendance</a></li> -->
+        </ul>
+      </section>
+    </nav>
+
+    <div id="container">
+      <div class="row">
+        <div class="small-12 columns" id="summary">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      Created with Love<br>
+      Copyright ΑΔΦ ΛΦ 2014
+    </div>
+
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
