@@ -8,14 +8,14 @@
 <div id="entries" class="row">
   <% if !@logs.blank? %>
     <% for log in @logs %>
-      <% puts '#' * 80 %>
-      <% puts log %>
       <div class="small-12 columns entry">
         <p class="date">On <%= friendly_date(log[:time]) %> at <%= friendly_time(log[:time]) %></p>
         <p class="description"><%= markup_keywords(log[:description]) %></p>
       </div>
     <% end %>
   <% else %>
-
+    <div class="small-12 columns entry">
+      <p>There are no entries for this brother yet. </p>
+    </div>
   <% end %>
 </div>

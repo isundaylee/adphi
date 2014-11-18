@@ -14,13 +14,17 @@ $hover-background-color: #eee;
   }
 
   #entries {
+    margin-top: 20px;
+
+    & > p {
+      color: grey;
+      font-family: 'Lora', serif;
+      margin: 0;
+    }
+
     .entry {
       padding-top: 5px;
       padding-bottom: 5px;
-
-      &:first-child {
-        margin-top: 20px;
-      }
 
       &:hover {
         background-color: $hover-background-color;
