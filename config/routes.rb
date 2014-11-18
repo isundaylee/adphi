@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   root 'static_pages#homepage'
+
+  get 'sessions/new', as: :sign_in
+  get 'sessions/destroy', as: :sign_out
+  get 'sessions/authenticate'
+  get 'sessions/fail'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
