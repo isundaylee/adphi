@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      pledge_class:
+        one: Pledge Class
+        other: Pledge Classes
