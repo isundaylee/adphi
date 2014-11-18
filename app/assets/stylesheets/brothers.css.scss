@@ -1,0 +1,27 @@
+// Place all the styles related to the brothers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$hover-background-color: #eee;
+
+#brothers_show {
+  #title {
+    padding: 5px 20px;
+
+    &:hover {
+      background-color: $hover-background-color;
+    }
+  }
+
+  h2, h3 {
+    text-align: left;
+    font-family: 'Lora', serif;
+  }
+
+  h3 {
+    margin-top: -10px;
+    text-align: left;
+    color: grey;
+    font-size: 20px;
+  }
+}

@@ -27,7 +27,7 @@
         <ul class="right">
           <!-- <li><a href="attendence.html">Attendance</a></li> -->
           <% if signed_in? %>
-            <li><a href="">Welcome, Brother <%= current_brother.name %>! </a></li>
+            <li><a href="<%= brother_path(current_brother) %>">Welcome, Brother <%= current_brother.name %>! </a></li>
             <li><a href="<%= sign_out_path %>">Sign Out</a></li>
           <% else %>
             <li><a href="<%= sign_in_path %>">Sign In</a></li>
