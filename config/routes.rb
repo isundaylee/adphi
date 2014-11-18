@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'brothers/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   root 'static_pages#homepage'
@@ -7,6 +9,9 @@ Rails.application.routes.draw do
   get 'sessions/destroy', as: :sign_out
   get 'sessions/authenticate'
   get 'sessions/fail'
+
+  resources :brothers, only: [:show] do
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
