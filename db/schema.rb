@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118211639) do
+ActiveRecord::Schema.define(version: 20141118222747) do
 
   create_table "brothers", force: true do |t|
     t.string   "name"
@@ -31,5 +31,15 @@ ActiveRecord::Schema.define(version: 20141118211639) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "shortlogs", force: true do |t|
+    t.integer  "log_type"
+    t.text     "content"
+    t.integer  "brother_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shortlogs", ["brother_id"], name: "index_shortlogs_on_brother_id"
 
 end
