@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'brothers/index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   root 'static_pages#homepage'
@@ -11,6 +9,9 @@ Rails.application.routes.draw do
   get 'sessions/fail'
 
   resources :brothers, only: [:show] do
+  end
+
+  resources :meetings, only: [:index, :show, :create] do
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

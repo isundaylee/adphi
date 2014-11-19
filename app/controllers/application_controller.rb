@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+    # Authentication
+
+    def require_signed_in
+      unless signed_in?
+        redirect_to root_url, flash: {alert: 'You need to be signed in. '}
+      end
+    end
+
+    # Sign in
+
     def current_brother
       @current_brother ||= (session[:brother_id] && Brother.find(session[:brother_id]))
     end
