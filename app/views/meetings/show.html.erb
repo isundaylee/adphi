@@ -4,8 +4,8 @@
 <% PledgeClass.order('year ASC').each do |c| %>
   <h4><%= c.name %></h4>
   <div class="row" id="attendence">
-  <% c.brothers.each do |b| %>
-    <div class="large-4 medium-6 small-12 columns" id="attendence_<%= b.id %>">
+  <% c.brothers.each_with_index do |b, i| %>
+    <div class="large-4 medium-6 small-12 columns <%= "end" if i == c.brothers.size - 1 %>" id="attendence_<%= b.id %>">
       <%= render 'attendence_entry', brother: b, meeting: @meeting %>
     </div>
   <% end %>
