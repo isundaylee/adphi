@@ -35,6 +35,10 @@ nav .name h1 a {
 
   &:hover {
     background-color: $hover-background-color;
+
+    p.action {
+      display: inline;
+    }
   }
 
   p {
@@ -48,6 +52,11 @@ nav .name h1 a {
 
     &:not(:first-child) {
       padding-left: 20px;
+    }
+
+    &.action {
+      float: right;
+      display: none;
     }
   }
 }

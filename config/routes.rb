@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :brothers, only: [:show] do
   end
 
-  resources :meetings, only: [:index, :show, :create] do
+  resources :meetings, only: [:index, :show, :create, :destroy] do
     member do
       post 'record/:brother_id/:status', action: 'record', as: 'record'
     end
