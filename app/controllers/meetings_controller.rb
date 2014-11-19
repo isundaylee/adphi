@@ -6,18 +6,26 @@ class MeetingsController < ApplicationController
     meeting = Meeting.find(params[:id])
     status = params[:status].to_sym
 
-    attendence = meeting.attendences.find_by(brother_id: brother.id)
+    puts meeting.creator == current_brother
+    puts '#' * 80
 
-    if attendence
-      attendence.update(status: status)
+    if meeting.creator == current_brother
+      attendence = meeting.attendences.find_by(brother_id: brother.id)
+
+      if attendence
+        attendence.update(status: status)
+      else
+        meeting.attendences.create(brother_id: brother.id, status: status, creator_id: current_brother.id)
+      end
+
+      Shortlog.attendence(brother, meeting.attendences.find_by(brother_id: brother.id))
+
+      @brother = brother
+      @meeting = meeting
+      @error = nil
     else
-      meeting.attendences.create(brother_id: brother.id, status: status, creator_id: current_brother.id)
+      @error = "You can only record attendence for meetings created by yourself. "
     end
-
-    Shortlog.attendence(brother, meeting.attendences.find_by(brother_id: brother.id))
-
-    @brother = brother
-    @meeting = meeting
 
     respond_to do |format|
       format.js
