@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141119054856) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attendences", force: true do |t|
     t.integer  "meeting_id"
     t.integer  "brother_id"
@@ -22,9 +25,9 @@ ActiveRecord::Schema.define(version: 20141119054856) do
     t.datetime "updated_at"
   end
 
-  add_index "attendences", ["brother_id"], name: "index_attendences_on_brother_id"
-  add_index "attendences", ["creator_id"], name: "index_attendences_on_creator_id"
-  add_index "attendences", ["meeting_id"], name: "index_attendences_on_meeting_id"
+  add_index "attendences", ["brother_id"], name: "index_attendences_on_brother_id", using: :btree
+  add_index "attendences", ["creator_id"], name: "index_attendences_on_creator_id", using: :btree
+  add_index "attendences", ["meeting_id"], name: "index_attendences_on_meeting_id", using: :btree
 
   create_table "brothers", force: true do |t|
     t.string   "name"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20141119054856) do
     t.string   "kerberos"
   end
 
-  add_index "brothers", ["pledge_class_id"], name: "index_brothers_on_pledge_class_id"
+  add_index "brothers", ["pledge_class_id"], name: "index_brothers_on_pledge_class_id", using: :btree
 
   create_table "meetings", force: true do |t|
     t.integer  "creator_id"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141119054856) do
     t.datetime "updated_at"
   end
 
-  add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id"
+  add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id", using: :btree
 
   create_table "pledge_classes", force: true do |t|
     t.string   "name"
@@ -62,6 +65,6 @@ ActiveRecord::Schema.define(version: 20141119054856) do
     t.datetime "updated_at"
   end
 
-  add_index "shortlogs", ["brother_id"], name: "index_shortlogs_on_brother_id"
+  add_index "shortlogs", ["brother_id"], name: "index_shortlogs_on_brother_id", using: :btree
 
 end
