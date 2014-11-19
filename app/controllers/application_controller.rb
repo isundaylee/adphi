@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
     # Sign in
 
     def current_brother
-      @current_brother ||= (session[:brother_id] && Brother.find(session[:brother_id]))
+      begin
+        @current_brother ||= (session[:brother_id] && Brother.find(session[:brother_id]))
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
     end
 
     def sign_in(brother)
