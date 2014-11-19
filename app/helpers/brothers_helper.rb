@@ -14,7 +14,7 @@ module BrothersHelper
   end
 
   def markup_keywords(text)
-    text.gsub(/{{(.*)}}/) do |m|
+    text.gsub(/\[\[(.*?)\]\]/) do |m|
       content_tag(:span, m[2...-2], class: "keywords")
     end.html_safe
   end
