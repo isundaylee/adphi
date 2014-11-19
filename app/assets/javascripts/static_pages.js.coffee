@@ -5,7 +5,7 @@
 ready = ->
   if $("#static_pages_homepage").length > 0
     $(window).resize ->
-      m = (parseInt($(window).height()) - 636.0) / 2
+      m = ($(window).height() - 636) / 2
       $("#crest").css("margin-top", m + "px")
       $("#crest").css("margin-bottom", m + "px")
     $(window).trigger('resize')
