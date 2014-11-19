@@ -1,4 +1,6 @@
 class Brother < ActiveRecord::Base
+  scope :current, -> { where(current: true) }
+
   belongs_to :pledge_class
 
   has_many :shortlogs
