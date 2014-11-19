@@ -4,6 +4,6 @@
   $('#meeting_<%= @meeting.id %>').remove();
 
   if ($('#meetings').children().length == 0) {
-    $('#meetings').html('<div class="small-12 columns">There are currently no meetings.</div>');
+    $('#meetings').html('<div class="small-12 columns entry"><p>There are currently no meetings.</p></div>');
   }
 <% end %>
