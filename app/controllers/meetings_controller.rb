@@ -43,8 +43,8 @@ class MeetingsController < ApplicationController
   def create
     name = params[:name]
 
-    current_brother.meetings.create(name: name)
+    meeting = current_brother.meetings.create(name: name)
 
-    redirect_to meetings_url, flash: {success: "You have successfully created the event #{name}. "}
+    redirect_to meeting_url(meeting), flash: {success: "You have successfully created the event #{name}. "}
   end
 end
