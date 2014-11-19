@@ -1,0 +1,16 @@
+<h2>Brothers</h2>
+
+
+<% PledgeClass.order('year ASC').each do |c| %>
+  <h4><%= c.name %></h4>
+  <div class="row pledge_class">
+  <% c.brothers.each do |b| %>
+    <div class="small-12 columns entry">
+      <a href="<%= brother_path(b) %>">
+        <p>Brother <span class="keywords"><%= b.name %></span>, ΛΦ '<%= two_digit_year b %></p>
+        <p>Present at <span class="keywords"><%= b.attendences.where(status: Attendence.statuses[:present]).size %></span> meetings.</p>
+      </a>
+    </div>
+  <% end %>
+  </div>
+<% end %>

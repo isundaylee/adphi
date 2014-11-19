@@ -31,6 +31,7 @@
             <li><a href="<%= brother_path(current_brother) %>">Welcome, Brother <%= current_brother.name %>! </a></li>
           <% end %>
           <li><a href="<%= meetings_path %>">Meetings</a></li>
+          <li><a href="<%= brothers_path %>">Brothers</a></li>
           <% if signed_in? %>
             <li><a href="<%= sign_out_path %>">Sign Out</a></li>
           <% else %>
