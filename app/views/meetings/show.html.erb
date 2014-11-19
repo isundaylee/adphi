@@ -1,2 +1,17 @@
-<h1>Meetings#show</h1>
-<p>Find me in app/views/meetings/show.html.erb</p>
+<h2>Attendence</h2>
+<h3><%= @meeting.name %> on <%= friendly_date(@meeting.created_at) %> at <%= friendly_time(@meeting.created_at) %></h3>
+
+<% PledgeClass.order('year ASC').each do |c| %>
+  <h4><%= c.name %></h4>
+  <div class="row" id="attendence">
+  <% c.brothers.each do |b| %>
+    <div class="large-4 medium-6 small-12 columns" id="attendence_<%= b.id %>">
+      <span><%= b.name %></span>
+      <a href="#" class="button tiny transparent">P</a>
+      <a href="#" class="button tiny transparent">L</a>
+      <a href="#" class="button tiny alert">A</a>
+      <a href="#" class="button tiny transparent">E</a>
+    </div>
+  <% end %>
+  </div>
+<% end %>
