@@ -9,21 +9,26 @@ class Shortlog < ActiveRecord::Base
   validates :log_type, presence: true
 
   def to_summary_entry
-    entry = {
-      time: created_at,
-    }
+    begin
+      entry = {
+        time: created_at,
+      }
 
-    case log_type.to_sym
-    when :plaintext
-      entry[:description] = content[:text]
-    when :attendence
-      creator = Brother.find(content[:creator_id])
-      meeting = Meeting.find(content[:meeting_id])
-      status = content[:status]
-      entry[:description] = "[[#{creator.name}]] changed your attendence of [[#{meeting.name}]] on [[#{ApplicationController.helpers.friendly_date(meeting.created_at)}]] at [[#{ApplicationController.helpers.friendly_time(meeting.created_at)}]] to [[#{status.to_s.capitalize}]]"
+      case log_type.to_sym
+      when :plaintext
+        entry[:description] = content[:text]
+      when :attendence
+        creator = Brother.find(content[:creator_id])
+        meeting = Meeting.find(content[:meeting_id])
+        status = content[:status]
+        entry[:description] = "[[#{creator.name}]] changed your attendence of [[#{meeting.name}]] on [[#{ApplicationController.helpers.friendly_date(meeting.created_at)}]] at [[#{ApplicationController.helpers.friendly_time(meeting.created_at)}]] to [[#{status.to_s.capitalize}]]"
+      end
+
+      entry
+    rescue ActiveRecord::RecordNotFound
+      # A faster alternative to dependent: :destroy
+      nil
     end
-
-    entry
   end
 
   def self.plaintext(brother, text)
