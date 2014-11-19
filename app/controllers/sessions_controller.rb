@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         redirect_to sessions_fail_url(message: 'Your Kerberos ID does not seem to be a brother\'s')
       else
         sign_in brother
-        redirect_to root_path, flash: {success: "Welcome, Brother #{brother.name}. "}
+        redirect_back root_path, flash: {success: "Welcome, Brother #{brother.name}. "}
       end
     end
   end
