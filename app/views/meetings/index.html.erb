@@ -18,9 +18,17 @@
 <div class="row">
   <% if !@meetings.blank? %>
     <% for meeting in @meetings %>
-      <a href="<%= meeting_path(meeting) %>">
+      <a href="<%= meeting_path(meeting[:meeting]) %>">
         <div class="small-12 columns entry">
-          <p><span class="keywords"><%= meeting.name %></span> on <span class="keywords"><%= friendly_date(meeting.created_at) %></span> at <span class="keywords"><%= friendly_time(meeting.created_at) %></span></p>
+          <p><span class="keywords"><%= meeting[:meeting].name %></span> on <span class="keywords"><%= friendly_date(meeting[:meeting].created_at) %></span> at <span class="keywords"><%= friendly_time(meeting[:meeting].created_at) %></span></p>
+          <p>
+            Created by <span class="keywords"><%= meeting[:meeting].creator.name %></span>,
+            <span class="keywords"><%= meeting[:present] %></span> present,
+            <span class="keywords"><%= meeting[:excused] %></span> excused,
+            <span class="keywords"><%= meeting[:tardy] %></span> tardy,
+            <span class="keywords"><%= meeting[:absent] %></span> absent,
+            attendence rate <span class="keywords"><%= number_to_percentage 100 * meeting[:rate] %></span>.
+          </p>
         </div>
       </a>
     <% end %>

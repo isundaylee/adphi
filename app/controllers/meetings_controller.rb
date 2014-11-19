@@ -33,7 +33,19 @@ class MeetingsController < ApplicationController
   end
 
   def index
-    @meetings = Meeting.all.reverse
+    @meetings = Meeting.all.reverse.map do |m|
+      r = {
+        meeting: m,
+        present: m.attendences.where(status: Attendence.statuses[:present]).size,
+        excused: m.attendences.where(status: Attendence.statuses[:excused]).size,
+        tardy: m.attendences.where(status: Attendence.statuses[:tardy]).size,
+        absent: m.attendences.where(status: Attendence.statuses[:absent]).size,
+      }
+
+      r[:rate] = 1.0 * r[:present] / Brother.current.size
+
+      r
+    end
   end
 
   def show
