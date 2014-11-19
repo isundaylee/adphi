@@ -6,11 +6,7 @@
   <div class="row" id="attendence">
   <% c.brothers.each do |b| %>
     <div class="large-4 medium-6 small-12 columns" id="attendence_<%= b.id %>">
-      <span><%= b.name %></span>
-      <a href="#" class="button tiny transparent">P</a>
-      <a href="#" class="button tiny transparent">L</a>
-      <a href="#" class="button tiny alert">A</a>
-      <a href="#" class="button tiny transparent">E</a>
+      <%= render 'attendence_entry', brother: b, meeting: @meeting %>
     </div>
   <% end %>
   </div>

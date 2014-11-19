@@ -1,7 +1,9 @@
 class Brother < ActiveRecord::Base
   belongs_to :pledge_class
+
   has_many :shortlogs
   has_many :meetings, foreign_key: 'creator_id'
+  has_many :attendences
 
   validates :name, presence: true, length: {minimum: 1, maximum: 100}
   validates :kerberos, presence: true, length: {minimum: 1, maximum: 8}

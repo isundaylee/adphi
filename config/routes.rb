@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :meetings, only: [:index, :show, :create] do
+    member do
+      post 'record/:brother_id/:status', action: 'record', as: 'record'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
