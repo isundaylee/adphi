@@ -41,3 +41,6 @@ gem 'spring',        group: :development
 gem 'rails_admin'
 
 gem 'foundation-rails'
+
+# Heroku assets issue
+gem 'rails_serve_static_assets'
