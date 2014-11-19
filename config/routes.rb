@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/authenticate'
   get 'sessions/fail'
 
-  resources :brothers, only: [:show] do
+  resources :brothers, only: [:index, :show] do
   end
 
   resources :meetings, only: [:index, :show, :create, :destroy] do
