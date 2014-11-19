@@ -34,4 +34,26 @@ namespace :import do
       puts 'Created ' + name
     end
   end
+
+  task pledge_classes: :environment do
+    classes = {
+      'Wolfpack' => 2014,
+      'Muses' => 2013,
+      'Atlas' => 2012,
+      'Celeritas' => 2011,
+      'Pendulum' => 2010,
+      'Prodromos' => 2009,
+    }
+
+    PledgeClass.destroy_all
+
+    classes.each do |n, y|
+      PledgeClass.create({
+        name: n,
+        year: y
+      })
+
+      puts 'Created ' + n
+    end
+  end
 end
