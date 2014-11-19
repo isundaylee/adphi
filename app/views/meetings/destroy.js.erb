@@ -1,0 +1,9 @@
+<% if @error %>
+  alert("<%= j @error %>");
+<% else %>
+  $('#meeting_<%= @meeting.id %>').remove();
+
+  if ($('#meetings').children().length == 0) {
+    $('#meetings').html('<div class="small-12 columns">There are currently no meetings.</div>');
+  }
+<% end %>

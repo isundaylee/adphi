@@ -59,4 +59,19 @@ class MeetingsController < ApplicationController
 
     redirect_to meeting_url(meeting), flash: {success: "You have successfully created the event #{name}. "}
   end
+
+  def destroy
+    meeting =  Meeting.find(params[:id])
+
+    if meeting.creator != current_brother
+      @error = "You can only delete meetings created by yourself. "
+    else
+      meeting.destroy
+      @meeting = meeting
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end
