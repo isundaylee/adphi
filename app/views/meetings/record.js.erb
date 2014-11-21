@@ -1,5 +1,5 @@
 <% if @error %>
   alert("<%= j @error %>")
 <% else %>
-  $('#attendence_<%= @brother.id %>').html('<%= j render("attendence_entry", brother: @brother, meeting: @meeting) %>')
+  $('#attendence_<%= @brother.id %>').html('<%= j render("attendence_entry", brother: @brother, meeting: @meeting, attendence: @attendence) %>')
 <% end %>
