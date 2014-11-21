@@ -33,4 +33,10 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Brother' do
+    configure :position do
+      searchable false
+    end
+  end
 end
