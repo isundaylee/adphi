@@ -9,6 +9,11 @@
       <a href="<%= brother_path(b) %>">
         <p>Brother <span class="keywords"><%= b.name %></span>, ΛΦ '<%= two_digit_year b %></p>
         <p>Present at <span class="keywords"><%= b.attendences.where(status: Attendence.statuses[:present]).size %></span> meetings.</p>
+        <p>
+          Kitchen job balance <span class="keywords"><%= b.balance(:kitchen).value %></span>,
+          house job balance <span class="keywords"><%= b.balance(:house).value %></span>,
+          social job balance <span class="keywords"><%= b.balance(:social).value %></span>
+        </p>
       </a>
     </div>
   <% end %>
