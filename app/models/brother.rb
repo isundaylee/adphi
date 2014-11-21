@@ -22,6 +22,27 @@ class Brother < ActiveRecord::Base
     :critic
   ]
 
+  POSITION_NAMES = [
+    "President",
+    "Vice President",
+    "Treasurer",
+    "Secretary",
+    "House Manager",
+    "Kitchen Manager",
+    "Social Chairman",
+    "Rush Chairman",
+    "Pledge Trainer",
+    "Brotherhood",
+    "Academic Chairman",
+    "Athletic Chairman",
+    "Alumni Relations Chairman",
+    "Community Relations Chairman",
+    "Historian",
+    "Fraternity Representative",
+    "Society Representative",
+    "Critic"
+  ]
+
   belongs_to :pledge_class
 
   has_many :shortlogs, dependent: :destroy
