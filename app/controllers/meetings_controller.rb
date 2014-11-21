@@ -17,13 +17,14 @@ class MeetingsController < ApplicationController
       if attendence
         attendence.update(status: status)
       else
-        meeting.attendences.create(brother_id: brother.id, status: status, creator_id: current_brother.id)
+        attendence = meeting.attendences.create(brother_id: brother.id, status: status, creator_id: current_brother.id)
       end
 
-      Shortlog.attendence(brother, meeting.attendences.find_by(brother_id: brother.id))
+      Shortlog.attendence(brother, attendence)
 
-      @brother = brother
-      @meeting = meeting
+      @brother    = brother
+      @meeting    = meeting
+      @attendence = attendence
       @error = nil
     else
       @error = "You can only record attendence for meetings created by yourself. "
