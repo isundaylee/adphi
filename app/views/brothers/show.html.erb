@@ -6,6 +6,14 @@
   </div>
 </div>
 
+<div id="info" class="row">
+  <div class="small-12 columns entry">
+    <p class="noindent">Kitchen Job Balance: <span class="keywords"><%= @brother.balance(:kitchen).value %></span></p>
+    <p class="noindent">House Job Balance: <span class="keywords"><%= @brother.balance(:house).value %></span></p>
+    <p class="noindent">Social Job Balance: <span class="keywords"><%= @brother.balance(:social).value %></span></p>
+  </div>
+</div>
+
 <div id="entries" class="row">
   <% if !@logs.blank? %>
     <% for log in @logs %>
