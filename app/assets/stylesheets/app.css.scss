@@ -56,6 +56,10 @@ nav .name h1 a {
       padding-left: 20px;
     }
 
+    &.noindent {
+      padding-left: 0;
+    }
+
     &.action {
       float: right;
       display: none;
