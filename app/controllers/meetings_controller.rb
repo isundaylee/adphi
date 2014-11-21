@@ -52,6 +52,9 @@ class MeetingsController < ApplicationController
 
   def show
     @meeting = Meeting.find(params[:id])
+    @attendences = @meeting.attendences.group_by { |a| a.brother_id }.hmap do |b, as|
+      [b, as[0]]
+    end
   end
 
   def create

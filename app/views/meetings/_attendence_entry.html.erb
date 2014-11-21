@@ -1,5 +1,3 @@
-<% attendence = meeting.attendences.find_by(brother_id: brother.id) %>
-
 <span><%= brother.name %></span>
 
 <%= link_to 'P', record_meeting_path(brother_id: brother, status: :present), remote: true, method: :post, class: "button tiny " + (attendence.nil? ? 'secondary' : (attendence.present? ? 'success' : 'transparent')) %>
