@@ -1,0 +1,7 @@
+entry = $('#brother_<%= @brother.id %>');
+entry.find('.balance_form').hide();
+entry.find('.result').text('You have successfully changed his <%= @balance.kind.to_s %> job balance by <%= @change %>. ');
+entry.find('.result').removeClass('success').addClass('success');
+entry.find('.result').show();
+
+$('#<%= @balance.kind.to_s %>_job_balance_<%= @brother.id %>').text("<%= @balance.value %>");

@@ -49,3 +49,4 @@ gem 'rails_serve_static_assets'
 gem 'unicorn'
 
 gem 'cancan'
+gem 'rack-mini-profiler'

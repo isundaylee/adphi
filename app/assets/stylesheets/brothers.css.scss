@@ -41,4 +41,27 @@ $hover-background-color: #eee;
   .entry:last-child {
     margin-bottom: 20px;
   }
+
+  .result {
+    text-align: right;
+    display: none;
+
+    &.success {
+      color: #43ac6a;
+    }
+  }
+
+  .balance_form {
+    padding-left: 20px;
+    display: none;
+
+    .row {
+      // margin-left: 20px;
+      // margin-right: 30px;
+      margin-left: auto;
+      max-width: 300px;
+      margin-top: 10px;
+      height: 30px;
+    }
+  }
 }
