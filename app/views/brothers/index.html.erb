@@ -10,7 +10,7 @@
         <div class="small-12 column">
           <a href="<%= brother_path(b) %>">
             <p>Brother <span class="keywords"><%= b.name %></span>, ΛΦ '<%= two_digit_year b %></p>
-            <p>Present at <span class="keywords"><%= b.attendences.where(status: Attendence.statuses[:present]).size %></span> meetings.</p>
+            <p>Present at <span class="keywords"><%= @presences[b.id] || 0 %></span> meetings.</p>
             <p>
               Kitchen job balance <span class="keywords" id="kitchen_job_balance_<%= b.id %>"><%= @balances[b.id][:kitchen].value %></span>,
               house job balance <span class="keywords" id="house_job_balance_<%= b.id %>"><%= @balances[b.id][:house].value %></span>,
