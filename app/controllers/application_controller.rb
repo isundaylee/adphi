@@ -48,4 +48,13 @@ class ApplicationController < ActionController::Base
 
     helper_method :current_brother, :signed_in?
 
+    # Cancan related
+
+    def current_ability
+      @current_ability ||= Ability.new(current_brother)
+    end
+
+    rescue_from CanCan::AccessDenied do |e|
+      redirect_to root_url, flash: {alert: e.message }
+    end
 end

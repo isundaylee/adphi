@@ -1,6 +1,8 @@
 class MeetingsController < ApplicationController
   before_action :require_signed_in, only: [:create, :record]
 
+  load_and_authorize_resource
+
   def record
     brother = Brother.find(params[:brother_id])
     meeting = Meeting.find(params[:id])

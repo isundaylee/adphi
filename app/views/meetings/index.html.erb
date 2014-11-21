@@ -1,19 +1,21 @@
 <h2>Meetings</h2>
 
-<div class="row" id="new_meeting">
-  <%= form_tag meetings_path do %>
-  <div class="large-12 columns">
-    <div class="row collapse">
-      <div class="small-10 columns">
-        <%= text_field_tag :name, 'House Meeting', placeholder: 'The name of the event. ' %>
-      </div>
-      <div class="small-2 columns">
-        <%= submit_tag "Create", class: "button postfix" %>
+<% if can? :create, Meeting %>
+  <div class="row" id="new_meeting">
+    <%= form_tag meetings_path do %>
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <%= text_field_tag :name, 'House Meeting', placeholder: 'The name of the event. ' %>
+        </div>
+        <div class="small-2 columns">
+          <%= submit_tag "Create", class: "button postfix" %>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
+<% end %>
 
 <div class="row" id="meetings">
   <% if !@meetings.blank? %>
@@ -29,7 +31,7 @@
             <span class="keywords"><%= meeting[:absent] %></span> absent,
             attendence rate <span class="keywords"><%= number_to_percentage 100 * meeting[:rate] %></span>.
           </p>
-          <% if meeting[:meeting].creator == current_brother %>
+          <% if can? :destroy, meeting[:meeting] %>
             <p class="action"><%= link_to 'Delete', meeting_path(meeting[:meeting]), method: :delete, remote: true, data: {confirm: "Do you really want to delete #{meeting[:meeting].name}? "} %></p>
           <% end %>
         </a>
