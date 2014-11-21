@@ -36,6 +36,19 @@ class Ability
       can :create, Meeting
       can :destroy, Meeting, creator_id: brother.id
       can :record, Meeting, creator_id: brother.id
+
+      if brother.kitchen_manager?
+        can :update, Balance, kind: "kitchen"
+      end
+
+      if brother.house_manager?
+        can :update, Balance, kind: "house"
+      end
+
+      # TODO who manages social jobs?
+      if false
+        can :update, Balance, kind: "social"
+      end
     end
   end
 end

@@ -39,4 +39,10 @@ RailsAdmin.config do |config|
       searchable false
     end
   end
+
+  config.model 'Balance' do
+    configure :kind do
+      searchable false
+    end
+  end
 end

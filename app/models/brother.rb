@@ -59,8 +59,12 @@ class Brother < ActiveRecord::Base
   # Fetch balances
 
   def balance(kind)
-    create_missing_balances
-    balances.find_by(kind: Balance.kinds[kind])
+    begin
+      balances.find_by!(kind: Balance.kinds[kind])
+    rescue ActiveRecord::RecordNotFound
+      create_missing_balances
+      balances.find_by!(kind: Balance.kinds[kind])
+    end
   end
 
   after_initialize do

@@ -5,16 +5,47 @@
   <h4><%= c.name %></h4>
   <div class="row pledge_class">
   <% c.brothers.each do |b| %>
-    <div class="small-12 columns entry">
-      <a href="<%= brother_path(b) %>">
-        <p>Brother <span class="keywords"><%= b.name %></span>, ΛΦ '<%= two_digit_year b %></p>
-        <p>Present at <span class="keywords"><%= b.attendences.where(status: Attendence.statuses[:present]).size %></span> meetings.</p>
-        <p>
-          Kitchen job balance <span class="keywords"><%= b.balance(:kitchen).value %></span>,
-          house job balance <span class="keywords"><%= b.balance(:house).value %></span>,
-          social job balance <span class="keywords"><%= b.balance(:social).value %></span>
-        </p>
-      </a>
+    <div class="small-12 columns entry" id="brother_<%= b.id %>">
+      <div class="row">
+        <div class="small-12 column">
+          <a href="<%= brother_path(b) %>">
+            <p>Brother <span class="keywords"><%= b.name %></span>, ΛΦ '<%= two_digit_year b %></p>
+            <p>Present at <span class="keywords"><%= b.attendences.where(status: Attendence.statuses[:present]).size %></span> meetings.</p>
+            <p>
+              Kitchen job balance <span class="keywords" id="kitchen_job_balance_<%= b.id %>"><%= b.balance(:kitchen).value %></span>,
+              house job balance <span class="keywords" id="house_job_balance_<%= b.id %>"><%= b.balance(:house).value %></span>,
+              social job balance <span class="keywords" id="social_job_balance_<%= b.id %>"><%= b.balance(:social).value %></span>
+            </p>
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <p class="result"></p>
+        </div>
+      </div>
+
+      <%= render 'balance_form', balance: b.balance(:kitchen) %>
+      <%= render 'balance_form', balance: b.balance(:house) %>
+      <%= render 'balance_form', balance: b.balance(:social) %>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <% if can? :update, b.balance(:kitchen) %>
+            <p class="action"><%= link_to 'Kitchen+1', 'javascript: void(0); ', class: 'kitchen_plus' %></p>
+            <p class="action"><%= link_to 'Kitchen-1', 'javascript: void(0); ', class: 'kitchen_minus' %></p>
+          <% end %>
+          <% if can? :update, b.balance(:house) %>
+            <p class="action"><%= link_to 'House+1', 'javascript: void(0); ', class: 'house_plus' %></p>
+            <p class="action"><%= link_to 'House-1', 'javascript: void(0); ', class: 'house_minus' %></p>
+          <% end %>
+          <% if can? :update, b.balance(:social) %>
+            <p class="action"><%= link_to 'Social+1', 'javascript: void(0); ', class: 'social_plus' %></p>
+            <p class="action"><%= link_to 'Social-1', 'javascript: void(0); ', class: 'social_minus' %></p>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
   </div>
