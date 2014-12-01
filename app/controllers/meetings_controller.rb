@@ -45,7 +45,7 @@ class MeetingsController < ApplicationController
         absent: m.attendences.where(status: Attendence.statuses[:absent]).size,
       }
 
-      r[:rate] = 1.0 * r[:present] / Brother.current.size
+      r[:rate] = 1.0 * (r[:present] + r[:tardy]) / Brother.current.size
 
       r
     end
