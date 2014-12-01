@@ -19,7 +19,7 @@ class BrothersController < ApplicationController
     end
 
     @presences = Attendence.all.group_by { |a| a.brother_id }.hmap do |b, as|
-      [b, as.select { |a| a.present? }.size]
+      [b, as.select { |a| a.present? || a.tardy? }.size]
     end
   end
 end
