@@ -21,19 +21,19 @@ ready = ->
       form.show()
 
     $('.kitchen_plus').click ->
-      show_form($(this), '.kitchen_form', 1, 'filling in')
+      show_form($(this), '.kitchen_form', 1, 'making up')
 
     $('.kitchen_minus').click ->
       show_form($(this), '.kitchen_form', -1, 'missing kitchen crew')
 
     $('.house_plus').click ->
-      show_form($(this), '.house_form', 1, 'filling in')
+      show_form($(this), '.house_form', 1, 'making up')
 
     $('.house_minus').click ->
       show_form($(this), '.house_form', -1, 'missing house job')
 
     $('.social_plus').click ->
-      show_form($(this), '.social_form', 1, 'filling in')
+      show_form($(this), '.social_form', 1, 'making up')
 
     $('.social_minus').click ->
       show_form($(this), '.social_form', -1, 'missing social job')
