@@ -75,7 +75,7 @@ class Brother < ActiveRecord::Base
 
   # Create missing balances
 
-  before_save :create_missing_balances
+  after_save :create_missing_balances
   def create_missing_balances
     Balance.kinds.each do |k, v|
       Balance.create_with(value: 0).find_or_create_by(brother_id: id, kind: v)
