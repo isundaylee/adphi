@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121174148) do
+ActiveRecord::Schema.define(version: 20150703231116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 20141121174148) do
 
   add_index "brothers", ["pledge_class_id"], name: "index_brothers_on_pledge_class_id", using: :btree
 
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "meetings", force: true do |t|
     t.integer  "creator_id"
     t.string   "name"
@@ -60,6 +66,16 @@ ActiveRecord::Schema.define(version: 20141121174148) do
   end
 
   add_index "meetings", ["creator_id"], name: "index_meetings_on_creator_id", using: :btree
+
+  create_table "memberships", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "brother_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["brother_id"], name: "index_memberships_on_brother_id", using: :btree
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
 
   create_table "pledge_classes", force: true do |t|
     t.string   "name"
