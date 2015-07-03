@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :groups, only: [:index, :show, :create, :destroy] do
+  end
+
   resources :balances, only: [:update] do
   end
 

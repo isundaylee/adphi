@@ -37,6 +37,12 @@ class Ability
       can :destroy, Meeting, creator_id: brother.id
       can :record, Meeting, creator_id: brother.id
 
+      # TODO(bojanserafimov): actually only admin should
+      # be able to destroy
+      can :read, Group
+      can :create, Group
+      can :destroy, Group
+
       if brother.kitchen_manager?
         can :update, Balance, kind: "kitchen"
       end
