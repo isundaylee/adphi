@@ -27,6 +27,7 @@
           <p><span class="keywords"><%= group[:group].name %></span></p>
           <% if can? :destroy, group[:group] %>
             <p class="action"><%= link_to 'Delete', group_path(group[:group]), method: :delete, remote: true, data: {confirm: "Do you really want to delete #{group[:group].name}? "} %></p>
+            <p class="action"><%= link_to 'Join', join_group_path(group[:group]), method: :post, remote: true, data: {confirm: "Do you really want to join #{group[:group].name}? "} %></p>
           <% end %>
         </a>
  

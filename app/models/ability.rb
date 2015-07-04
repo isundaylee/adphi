@@ -42,6 +42,7 @@ class Ability
       can :read, Group
       can :create, Group
       can :destroy, Group
+      can :join, Group
 
       if brother.kitchen_manager?
         can :update, Balance, kind: "kitchen"

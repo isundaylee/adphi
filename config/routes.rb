@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:index, :show, :create, :destroy] do
+    member do
+      post 'join', action: 'join', as: 'join'
+    end
   end
 
   resources :balances, only: [:update] do
