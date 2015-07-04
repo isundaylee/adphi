@@ -1,1 +1,40 @@
 <h2>Groups</h2>
+
+<% if can? :create, Group %>
+  <div class="row" id="new_group">
+    <%= form_tag groups_path do %>
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <%= text_field_tag :name, 'Group Name', placeholder: 'The name of the group. ' %>
+        </div>
+        <div class="small-2 columns">
+          <%= submit_tag "Create", class: "button postfix" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+<div class="row" id="groups">
+  <% if !@groups.blank? %>
+    <% for group in @groups %>
+      <div class="small-12 columns entry" id="group_<%= group[:group].id %>">
+        <a href="<%= group_path(group[:group]) %>">
+          <p><span class="keywords"><%= group[:group].name %></span></p>
+          <% if can? :destroy, group[:group] %>
+            <p class="action"><%= link_to 'Delete', group_path(group[:group]), method: :delete, remote: true, data: {confirm: "Do you really want to delete #{group[:group].name}? "} %></p>
+          <% end %>
+        </a>
+ 
+      </div>
+    <% end %>
+  <% else %>
+    <div class="small-12 columns entry">
+      <p>There are currently no groups.</p>
+    </div>
+  <% end %>
+</div>

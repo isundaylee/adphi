@@ -1,0 +1,9 @@
+<% if @error %>
+  alert("<%= j @error %>");
+<% else %>
+  $('#group_<%= @group.id %>').remove();
+
+  if ($('#groups').children().length == 0) {
+    $('#groups').html('<div class="small-12 columns entry"><p>There are currently no groups.</p></div>');
+  }
+<% end %>
